@@ -7,24 +7,13 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
-
-strategy:
-  matrix:
-    Python38:
-      python.version: '3.8'
-    Python39:
-      python.version: '3.9'
-    Python310:
-      python.version: '3.10'
-    Python311:
-      python.version: '3.11'
+  name: 'Default' # Ensure this matches your pool name
 
 steps:
 - task: UsePythonVersion@0
   inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+    versionSpec: '3.12' # REPLACE THIS with your actual version (e.g., '3.12' or '3.10')
+  displayName: 'Use Python installed on Agent'
 
 - script: |
     python -m pip install --upgrade pip
