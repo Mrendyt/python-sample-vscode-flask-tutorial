@@ -2,21 +2,20 @@ trigger:
 - main
 
 pool:
-  name: 'testing_pool' # Correct pool name
+  name: 'testing_pool'
 
 steps:
-# Bypasses the download attempt and uses your local Python 3.12
+- checkout: self
+
 - script: |
     python --version
     python -m pip --version
-  displayName: 'Verify Local Python 3.12'
+  displayName: 'Verify Local Python'
 
 - script: |
     python -m pip install --upgrade pip
-    # pip install -r requirements.txt
-  displayName: 'Install dependencies'
+  displayName: 'Upgrade Pip'
 
 - script: |
     python -m pip install pytest pytest-azurepipelines
-    # pytest
-  displayName: 'pytest'
+  displayName: 'Install Test Tools'
